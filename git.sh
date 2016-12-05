@@ -11,6 +11,7 @@ done
 
 
 #修改远程仓库并跟踪分支
+#git remote set-url origin [git_addr]
 change_remote() {
     if [ -z $1 ]; then
         echo 'usage: change_remote [new_remote]'
