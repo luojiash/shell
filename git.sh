@@ -10,21 +10,21 @@ done
 # for i in $(git br | grep -v "*"); do echo $i; git lg $i --not prepare; echo "---"; done
 
 
-#修改远程仓库并跟踪分支
-#git remote set-url origin [git_addr]
-change_remote() {
+#修改远程仓库host
+change_git_host() {
     if [ -z $1 ]; then
-        echo 'usage: change_remote [new_remote]'
+        echo 'usage: change_git_host [new_host]'
         return 1
     fi
     addr=$(git remote -v | head -1 | awk '{print $2}' | sed "s/@.*:/@$1:/")
-    git remote rm origin
-    git remote add origin $addr
-    git fetch
-    git branch | awk '{print $NF}' |
-    while read remote; do
-        git branch -u "origin/$remote" "$remote";
-    done
+    # git remote rm origin
+    # git remote add origin $addr
+    # git fetch
+    # git branch | awk '{print $NF}' |
+    # while read remote; do
+        # git branch -u "origin/$remote" "$remote";
+    # done
+    git remote set-url origin $addr
 }
 
 
